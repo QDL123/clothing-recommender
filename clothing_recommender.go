@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"io"
 	"log"
 	"net/http"
@@ -97,11 +96,11 @@ func sendRecommendation(text string, phoneNumber string) error {
 
 	resp, err := client.Api.CreateMessage(params)
 	if err != nil {
-		fmt.Println("Error sending SMS message: " + err.Error())
+		log.Println("Error sending SMS message: " + err.Error())
 		return err
 	} else {
 		response, _ := json.Marshal(*resp)
-		fmt.Println("Response: " + string(response))
+		log.Println("Response: " + string(response))
 	}
 
 	return nil
@@ -122,7 +121,8 @@ func GetRecommendation(location string, phoneNumber string) error {
 	err = sendRecommendation(text, phoneNumber)
 	if err != nil {
 		log.Printf("An error occurred: %s\n", err)
+		return err
 	}
-	fmt.Println(text)
+
 	return nil
 }

@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"log"
 	"os"
 
@@ -11,8 +10,6 @@ import (
 )
 
 func HandleRequest(ctx context.Context, event interface{}) (string, error) {
-	fmt.Println("event", event)
-	fmt.Println("IN HANDLE REQUEST FUNCTION")
 	log.Print("Clothing-recommender lambda triggered\n")
 
 	location := os.Getenv("LOCATION")
@@ -27,7 +24,6 @@ func HandleRequest(ctx context.Context, event interface{}) (string, error) {
 }
 
 func main() {
-	log.Print("ENTERED MAIN FUNCTION")
 	if err := godotenv.Load(); err != nil {
 		log.Print("No .env file found")
 	}

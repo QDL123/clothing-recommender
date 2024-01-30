@@ -15,7 +15,7 @@ data "archive_file" "function_archive" {
 }
 
 // create the lambda function from zip file
-resource "aws_lambda_function" "function" {
+resource "aws_lambda_function" "clothing_recommender_function" {
   function_name = "clothing-recommender"
   description   = "Gives clothing recommendation based on weather."
   role          = aws_iam_role.lambda.arn
@@ -29,6 +29,6 @@ resource "aws_lambda_function" "function" {
 }
 
 resource "aws_cloudwatch_log_group" "log_group" {
-  name              = "/aws/lambda/${aws_lambda_function.function.function_name}"
+  name              = "/aws/lambda/${aws_lambda_function.clothing_recommender_function.function_name}"
   retention_in_days = 7
 }
